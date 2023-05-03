@@ -10,7 +10,9 @@ using namespace ariel;
 class Fraction {
 private:
     int numerator, denominator;
-
+private:
+    void setNumerator(int num) ;
+    void setDenominator(int num) ;
 public:
     // Constructor
     Fraction();

@@ -13,19 +13,21 @@ Fraction::Fraction(int num, int den) : numerator(num), denominator(den)
     if (denominator == 0) {
         throw std::invalid_argument("Denominator cannot be zero.");
     }
+    if(den < 0)
+    {
+        setNumerator(-1 * num);
+        setDenominator(-1 * denominator);
+    }
     reduce();
 }
 
 
 Fraction::Fraction(float num)
 {
-    int int_part = static_cast<int>(num);
-    float frac_part = num - int_part;
 
-    numerator = int_part * 1000 + static_cast<int>(frac_part * 1000);
+    numerator = static_cast<int>(num*1000);
     denominator = 1000;
-
-    reduce();
+    Fraction(numerator,denominator);
 }
 
 // Overloaded operators
@@ -35,6 +37,7 @@ Fraction operator+(const Fraction &frac1, const Fraction &frac2)
     int den = frac1.denominator * frac2.denominator;
     return Fraction(num, den);
 }
+
 
 Fraction operator-(const Fraction &frac1, const Fraction &frac2)
 {
@@ -53,7 +56,7 @@ Fraction operator*(const Fraction &frac1, const Fraction &frac2)
 Fraction operator/(const Fraction &frac1, const Fraction &frac2)
 {
     if (frac2.numerator == 0) {
-        throw std::invalid_argument("Division by zero.");
+        throw std::runtime_error("Division by zero.");
     }
     int num = frac1.numerator * frac2.denominator;
     int den = frac1.denominator * frac2.numerator;
@@ -157,6 +160,8 @@ void Fraction::reduce()
     // Divide both numerator and denominator by gcd to reduce the fraction
     numerator /= gcd;
     denominator /= gcd;
+
+    
 }
 
 int Fraction::getNumerator() const
@@ -169,4 +174,12 @@ int Fraction::getDenominator() const
     return denominator;
 }
 
+void Fraction:: setNumerator(int num)
+{
+    this->numerator = num;
+}
+void Fraction :: setDenominator(int num) 
+{
+    this->denominator = num;
+}
 
