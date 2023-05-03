@@ -46,12 +46,25 @@ Fraction operator-(const Fraction &frac1, const Fraction &frac2)
     return Fraction(num, den);
 }
 
+// Fraction operator*(const Fraction &frac1, const Fraction &frac2)
+// {
+//     int num = frac1.numerator * frac2.numerator;
+//     int den = frac1.denominator * frac2.denominator;
+//     return Fraction(num, den);
+// }
+
 Fraction operator*(const Fraction &frac1, const Fraction &frac2)
 {
-    int num = frac1.numerator * frac2.numerator;
-    int den = frac1.denominator * frac2.denominator;
-    return Fraction(num, den);
+    long long num = static_cast<long long>(frac1.numerator) * static_cast<long long>(frac2.numerator);
+    long long den = static_cast<long long>(frac1.denominator) * static_cast<long long>(frac2.denominator);
+    
+    if (num > std::numeric_limits<int>::max() || num < std::numeric_limits<int>::min()) {
+        throw std::overflow_error("Integer overflow in fraction multiplication.");
+    }
+    
+    return Fraction(static_cast<int>(num), static_cast<int>(den));
 }
+
 
 Fraction operator/(const Fraction &frac1, const Fraction &frac2)
 {
@@ -62,7 +75,6 @@ Fraction operator/(const Fraction &frac1, const Fraction &frac2)
     int den = frac1.denominator * frac2.numerator;
     return Fraction(num, den);
 }
-
 
 bool operator==(const Fraction &frac1, const Fraction &frac2)
 {
