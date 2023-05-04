@@ -28,6 +28,7 @@ public:
     friend Fraction operator*(const Fraction& frac1, const Fraction& frac2);
     friend Fraction operator/(const Fraction& frac1, const Fraction& frac2);
     friend bool operator==(const Fraction& frac1, const Fraction& frac2);
+    friend bool operator!= (const Fraction& frac1, const Fraction& frac2);
     friend bool operator<(const Fraction& frac1, const Fraction& frac2);
     friend bool operator>(const Fraction& frac1, const Fraction& frac2);
     friend bool operator<=(const Fraction& frac1, const Fraction& frac2);
