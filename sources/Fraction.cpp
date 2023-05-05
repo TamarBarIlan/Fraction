@@ -145,7 +145,6 @@ std::ostream &operator<<(std::ostream &os, const Fraction &frac)
     os << frac.numerator << "/" << frac.denominator;
     return os;
 }
-
 std::istream &operator>>(std::istream &is, Fraction &frac)
 {
     int num, den;
