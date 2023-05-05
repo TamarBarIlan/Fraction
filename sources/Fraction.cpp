@@ -1,7 +1,3 @@
-// #include <iostream>
-// #include <cmath>
-// #include <iomanip>
-// #include <numeric>
 #include <bits/stdc++.h>
 #include "Fraction.hpp"
 
@@ -23,13 +19,6 @@ Fraction::Fraction(int num, int den) : numerator(num), denominator(den)
     reduce();
 }
 
-// Fraction::Fraction(float num)
-// {
-
-//     numerator = static_cast<int>(num * 1000);
-//     denominator = 1000;
-//     Fraction(numerator, denominator);
-// }
 Fraction::Fraction(float num)
 {
     numerator = static_cast<int>(std::round(num * 1000));
